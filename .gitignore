@@ -1,0 +1,38 @@
+# ============================================================
+#  .gitignore
+#  Prevents sensitive and generated files from being committed.
+#  Always include this in every Terraform project.
+# ============================================================
+
+# Terraform internals #The **/ prefix means it applies inside every subfolder automatically — one .gitignore at root covers both projects.
+**/.terraform/
+**/.terraform.lock.hcl
+
+# Local state files — never commit these.
+# If leaked, anyone can see your entire infrastructure layout.
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform working directory — generated on terraform init
+.terraform/
+.terraform.lock.hcl    # DO commit this one (locks provider versions)
+
+# Variable files that may contain secrets
+*.tfvars
+# Exception: commit example files so teammates know what's needed
+!terraform.tfvars.example
+
+# Plan files
+tfplan
+*.tfplan
+
+# SSH keys — never commit private keys
+*.pem
+id_rsa
+id_rsa.pub
+
+# OS and editor noise
+.DS_Store
+.idea/
+*.swp
